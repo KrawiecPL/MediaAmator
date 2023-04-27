@@ -32,17 +32,17 @@ function renderProducts(items) {
             <div class="product-name">${item.name}</div>
             <div class="product-description">${item.description}</div>
             <div class="product-price">
-                <span class="price">${item.price.toFixed(2)} zł</span>
+                <span class="price">${item.price.toFixed(2)} PLN</span>
                 <span class="price-sale">${
 									item.sale
 										? (item.price - item.saleAmount).toFixed(2)
 										: item.price.toFixed(2)
-								} zł</span>	
+								} PLN</span>	
             </div>
             <div data-id="${
 							item.id
-						}" class="product-addtobasket">Dodaj do koszyka</div>
-            <div class="product-sale-info">Promocja</div>
+						}" class="product-addtobasket">Add to basket</div>
+            <div class="product-sale-info">Sale</div>
         `;
 		productsSection.appendChild(newProduct);
 
@@ -64,11 +64,6 @@ function productAddToBasket(e) {
 		];
 	basket.push([basketItemNumber, addedProduct]);
 	basketItemNumber++;
-	// console.log(basket);
-	// basket.forEach(basketProduct => {
-	//     console.log(basketProduct.price - (basketProduct.sale ? basketProduct.saleAmount : 0));
-	//     basketTotal += basketProduct.price - (basketProduct.sale ? basketProduct.saleAmount : 0);
-	// });
 
 	basketTotal +=
 		addedProduct.price - (addedProduct.sale ? addedProduct.saleAmount : 0);
@@ -87,7 +82,7 @@ function productAddToBasket(e) {
             <span class="item-price">${(item[1].sale
 							? item[1].price - item[1].saleAmount
 							: item[1].price
-						).toFixed(2)} zł</span>
+						).toFixed(2)} PLN</span>
             <span data-id="" class="item-remove"><i class="fa-solid fa-trash"></i></span>
         `;
 		basketContainer.appendChild(newBasketItem);
@@ -131,13 +126,13 @@ function removeBasketItem(e) {
 		".basket-container .basket-list"
 	);
 	if (basketContainer.innerHTML == "") {
-		basketContainer.innerHTML = "Brak produktów w koszyku";
+		basketContainer.innerHTML = "No products in the basket";
 	}
 	const totalAmountContainer = document.querySelector(
 		".basket-container .basket-total-amount span"
 	);
 
-	totalAmountContainer.innerHTML = `${basketTotal.toFixed(2)} zł`;
+	totalAmountContainer.innerHTML = `${basketTotal.toFixed(2)} PLN`;
 
 	basketCount--;
 	updateBasketCounter();
@@ -147,7 +142,7 @@ function renderCategories(items) {
 	items.forEach((item) => {
 		categories.add(item.category);
 	});
-	categories = ["wszystkie", ...categories];
+	categories = ["all", ...categories];
 	const categoriesSection = document.querySelector(
 		"main aside .categories-buttons"
 	);
@@ -172,7 +167,7 @@ categoryButtons.forEach((btn) => {
 		const category = e.target.dataset.category;
 
 		const selectCategoryProducts = currentProducts.filter((item) => {
-			if (item.category === category || category === "wszystkie") {
+			if (item.category === category || category === "all") {
 				return item;
 			}
 		});
