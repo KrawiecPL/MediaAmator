@@ -193,7 +193,7 @@ searchBar.addEventListener("input", (e) => {
 		}
 	});
 	let button = document.querySelector(
-		".categories-container .categories-buttons button[data-category=wszystkie]"
+		".categories-container .categories-buttons button[data-category=all]"
 	);
 
 	categoryButtons.forEach((btn2) => {
